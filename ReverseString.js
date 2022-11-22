@@ -21,9 +21,7 @@
 
 // Solution №3
 let reverseString = function(s) {
-    let start = 0;
-    let end = s.length - 1;
-    for( ; start < end; start++, end--) {
+    for(let start = 0, end = s.length - 1; start < end; start++, end--) {
         [s[start], s[end]] = [s[end], s[start]]
     }
     return s
