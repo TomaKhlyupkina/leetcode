@@ -70,6 +70,39 @@ class List {
         return this
     }
 
+    insert(val, place) {
+        if (place === 0) {
+            return this.unshift(val)
+        }
+
+        let countNode = 0;
+        let prefixNode = this.firstNode
+        for (; countNode !== place - 1; prefixNode = prefixNode.next, countNode++) {
+            if (prefixNode === null) {
+                throw new Error("Out of bound")
+            }
+        }
+        prefixNode.next = new ListNode(val, prefixNode.next)
+        return this
+    }
+
+    remove(place) {
+        if (place === 0) {
+            return this.shift()
+        }
+
+        let countNode = 0;
+        let prefixNode = this.firstNode
+        for (; countNode !== place - 1 && prefixNode.next; prefixNode = prefixNode.next, countNode++) {
+        }
+
+        if (prefixNode.next === null) {
+            throw new Error("Out of bound")
+        }
+        prefixNode.next = prefixNode.next.next
+        return this
+    }
+
     print() {
         for (let node = this.firstNode; node !== null; node = node.next) {
             let mes = ""
@@ -84,9 +117,13 @@ class List {
 
 }
 
-let list = new List(1)
+let list = new List(0, 1, 2)
 
-list.push().push()
-
+try {
+    list.remove(3)
+} catch (ex) {
+    console.log(ex.message)
+}
 
 list.print()
+
